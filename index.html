@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonardo & Johana - 2 Meses</title>
+    <title>Leo & Johana - 2 Meses</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Quicksand:wght@300;500&family=Parisienne&display=swap');
 
@@ -11,6 +11,55 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: #0f0c29;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ajustes para móvil */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 3.5rem !important;
+                margin: 0.5rem 0 !important;
+            }
+
+            .subtitle {
+                font-size: 1.3rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            .poema {
+                font-size: 1.1rem !important;
+                padding: 1rem !important;
+                margin: 1.5rem auto !important;
+            }
+
+            .gallery {
+                gap: 1.5rem !important;
+                margin: 2rem 0 !important;
+            }
+
+            .photo-card {
+                width: 100% !important;
+                height: 300px !important;
+                max-width: 300px !important;
+            }
+
+            .photo-title {
+                padding: 1rem !important;
+                font-size: 1rem !important;
+            }
         }
 
         body {
@@ -430,6 +479,31 @@
         // Fecha actual
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('today-date').textContent = new Date().toLocaleDateString('es-ES', options);
+        // Ajuste adicional para móviles: reducir cantidad de estrellas
+        function createStars() {
+            const isMobile = window.innerWidth <= 768;
+            const starCount = isMobile ? 100 : 200;
+            
+            const staticStarsContainer = document.getElementById('static-stars');
+            staticStarsContainer.innerHTML = '';
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'static-star';
+                star.style.width = `${Math.random() * 2 + 1}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                staticStarsContainer.appendChild(star);
+            }
+        }
+
+        // Ejecutar al cargar y al redimensionar
+        window.addEventListener('load', createStars);
+        window.addEventListener('resize', createStars);
+
+
+        
     </script>
 </body>
 </html>
