@@ -4,17 +4,535 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestros 5 Meses de Amor Eterno</title>
-    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;500;700&family=Sacramento&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #16213e 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Estrellas optimizadas - reducidas para móviles */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 4s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.1);
+            }
+        }
+
+        /* Partículas reducidas para móviles */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 16px;
+            animation: floatParticle 10s infinite linear;
+            opacity: 0.4;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.4;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Navegación mejorada */
+        .nav-card {
+            background: rgba(255, 107, 107, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .nav-link {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #f8a5c2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+        }
+
+        /* Contador de amor optimizado */
+        .love-counter {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .counter-item {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .counter-number {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            display: block;
+            font-weight: 700;
+            text-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .counter-label {
+            font-size: 0.8rem;
+            color: #f8a5c2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-family: 'Sacramento', cursive;
+            font-size: 3.5rem;
+            margin: 1rem 0;
+            color: #ff6b6b;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+            animation: heartBeat 4s infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { 
+                transform: scale(1); 
+            }
+            50% { 
+                transform: scale(1.02);
+            }
+        }
+
+        .subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #f8a5c2;
+            line-height: 1.4;
+        }
+
+        /* Cita del libro optimizada */
+        .book-quote {
+            margin: 2rem auto;
+            max-width: 800px;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 107, 107, 0.1));
+            border-radius: 15px;
+            border-left: 4px solid #ff6b6b;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .quote-content {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #fff;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .quote-author {
+            color: #f8a5c2;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-align: right;
+        }
+
+        .quote-meaning {
+            color: #e8d5d5;
+            font-size: 0.9rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .poema {
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 2rem auto;
+            max-width: 700px;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            border-left: 3px solid #ff6b6b;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Línea de tiempo optimizada */
+        .timeline-container {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-title {
+            font-family: 'Sacramento', cursive;
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 8px rgba(255, 107, 107, 0.5);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(180deg, #ff6b6b, #f8a5c2);
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            margin-left: 60px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: -48px;
+            background: #fff;
+            border: 3px solid #ff6b6b;
+            top: 1.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-marker.active {
+            background: #ff6b6b;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.8);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .timeline-content h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: #e8d5d5;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        /* Galería optimizada */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 1rem;
+        }
+
+        .photo-card {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(248, 165, 194, 0.1));
+        }
+
+        .photo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: #fff;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover .photo-title {
+            transform: translateY(0);
+        }
+
+        .photo-poem {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            color: #f8a5c2;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Poema final optimizado */
+        .final-poem {
+            margin: 3rem auto;
+            max-width: 800px;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(248, 165, 194, 0.2));
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .poem-content {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #fff;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Footer optimizado */
+        footer {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px 20px 0 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-content p {
+            font-size: 0.95rem;
+            color: #a5b1c2;
+            margin: 0.5rem 0;
+        }
+
+        .love-signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: #ff6b6b !important;
+            margin: 1rem 0 !important;
+        }
+
+        .footer-hearts {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            animation: bounce 3s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Optimizaciones para móviles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem;
+            }
+            
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .love-counter {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+                padding: 1rem;
+            }
+            
+            .counter-number {
+                font-size: 2rem;
+            }
+            
+            .counter-label {
+                font-size: 0.7rem;
+            }
+            
+            .timeline-title {
+                font-size: 2rem;
+            }
+            
+            .timeline-item {
+                margin-left: 40px;
+                padding: 1rem;
+            }
+            
+            .timeline-marker {
+                left: -38px;
+                width: 12px;
+                height: 12px;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .photo-card {
+                height: 250px;
+            }
+            
+            .quote-content {
+                font-size: 1.2rem;
+            }
+            
+            .poem-content {
+                font-size: 1.2rem;
+            }
+
+            /* Reducir animaciones en móviles */
+            .star {
+                animation: none;
+                opacity: 0.3;
+            }
+            
+            .particle {
+                display: none;
+            }
+        }
+
+        /* Mejoras de rendimiento */
+        .photo-card,
+        .timeline-item,
+        .love-counter {
+            will-change: transform;
+        }
+
+        /* Modo reducido de movimiento */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Estrellas de fondo -->
+    <!-- Estrellas de fondo optimizadas -->
     <div id="stars"></div>
     
-    <!-- Partículas flotantes -->
+    <!-- Partículas flotantes optimizadas -->
     <div id="particles"></div>
 
     <div class="container">
+        <!-- Navegación a carta -->
+        <div class="nav-card">
+            <a href="carta.html" class="nav-link">💌 Leer mi Carta de Amor 💌</a>
+        </div>
+
         <!-- Contador especial -->
         <div class="love-counter">
             <div class="counter-item">
@@ -54,7 +572,7 @@
             mi amor por ti florece cada día más fuerte."</span>
         </div>
 
-        <!-- Línea de tiempo interactiva -->
+        <!-- Línea de tiempo optimizada -->
         <div class="timeline-container">
             <h2 class="timeline-title">Nuestra Historia de Amor</h2>
             <div class="timeline">
@@ -96,135 +614,61 @@
             </div>
         </div>
 
-        <!-- Galería expandida -->
+        <!-- Galería optimizada -->
         <div class="gallery">
-            <!-- Fotos originales -->
             <div class="photo-card">
-                <img src="Un reloj que me regaló.jpg" alt="Reloj especial">
+                <img src="Un reloj que me regaló.jpg" alt="Reloj especial" loading="lazy">
                 <div class="photo-title">El reloj que detuvo el tiempo cuando te conocí</div>
-                <div class="floating-hearts" style="top: 20%; left: 10%;">❤️</div>
             </div>
 
             <div class="photo-card">
-                <img src="Un ramo de flores que le regalé.jpg" alt="Ramo de flores">
+                <img src="Un ramo de flores que le regalé.jpg" alt="Ramo de flores" loading="lazy">
                 <div class="photo-title">
                     <div class="photo-poem">
                         "Flores para quien florece en mi alma,<br>
                         pétalos que susurran tu nombre."
                     </div>
                 </div>
-                <div class="floating-hearts" style="top: 70%; right: 10%;">🌸</div>
             </div>
 
             <div class="photo-card">
-                <img src="Un ramo de flores que le hice.jpg" alt="Ramo hecho a mano">
+                <img src="Un ramo de flores que le hice.jpg" alt="Ramo hecho a mano" loading="lazy">
                 <div class="photo-title">
                     <div class="photo-poem">
                         "Cada pétalo llevaba un 'te amo',<br>
                         cada hoja una promesa eterna."
                     </div>
                 </div>
-                <div class="floating-hearts" style="bottom: 20%; left: 15%;">💐</div>
             </div>
 
             <div class="photo-card">
-                <img src="dibujo que me dió.jpg" alt="Dibujo especial">
+                <img src="dibujo que me dió.jpg" alt="Dibujo especial" loading="lazy">
                 <div class="photo-title">
                     <div class="photo-poem">
                         "Tu arte vive en mi corazón,<br>
                         cada trazo una caricia al alma."
                     </div>
                 </div>
-                <div class="floating-hearts" style="top: 30%; right: 20%;">🎨</div>
             </div>
 
             <div class="photo-card">
-                <img src="dibujo 2 que me dió.jpg" alt="Segundo dibujo">
+                <img src="dibujo 2 que me dió.jpg" alt="Segundo dibujo" loading="lazy">
                 <div class="photo-title">
                     <div class="photo-poem">
                         "Tus manos crean magia,<br>
                         tus dibujos dibujan mi felicidad."
                     </div>
                 </div>
-                <div class="floating-hearts" style="bottom: 40%; right: 25%;">✏️</div>
             </div>
 
             <div class="photo-card">
-                <img src="foto de paisaje de mi casa que me recuerda a ella.jpg" alt="Paisaje especial">
+                <img src="foto de paisaje de mi casa que me recuerda a ella.jpg" alt="Paisaje especial" loading="lazy">
                 <div class="photo-title">
                     <div class="photo-poem">
                         "Este lugar grita tu nombre,<br>
                         cada atardecer susurra 'te amo'."
                     </div>
                 </div>
-                <div class="floating-hearts" style="top: 50%; left: 20%;">🌄</div>
-            </div>
-
-            <div class="photo-card">
-                <img src="foto enmedio.jpg" alt="Foto juntos">
-                <div class="photo-title">
-                    <div class="photo-poem">
-                        "El centro de mi universo,<br>
-                        donde orbitan todos mis sueños."
-                    </div>
-                </div>
-                <div class="floating-hearts" style="bottom: 10%; right: 10%;">👑</div>
-            </div>
-
-            <!-- Nuevas fotos -->
-            <div class="photo-card">
-                <img src="chapultepec_lluvia.jpg" alt="Chapultepec bajo la lluvia">
-                <div class="photo-title">
-                    <div class="photo-poem">
-                        "Bajo la lluvia de Chapultepec,<br>
-                        nuestro amor creció como las flores del lago."
-                    </div>
-                </div>
-                <div class="floating-hearts" style="top: 25%; left: 20%;">🌧️</div>
-            </div>
-
-            <div class="photo-card">
-                <img src="dia_flores.jpg" alt="El día de las flores">
-                <div class="photo-title">
-                    <div class="photo-poem">
-                        "Ese día te entregué flores,<br>
-                        tú me entregaste tu sonrisa eterna."
-                    </div>
-                </div>
-                <div class="floating-hearts" style="bottom: 30%; right: 15%;">💝</div>
-            </div>
-
-            <div class="photo-card">
-                <img src="oficial_novia.jpg" alt="El día oficial">
-                <div class="photo-title">
-                    <div class="photo-poem">
-                        "Con La Sombra del Viento en mis manos,<br>
-                        te pedí ser la luz de mi vida."
-                    </div>
-                </div>
-                <div class="floating-hearts" style="top: 15%; right: 25%;">📖</div>
-            </div>
-
-            <div class="photo-card">
-                <img src="piramides_egipto.jpg" alt="Pirámides de Egipto">
-                <div class="photo-title">
-                    <div class="photo-poem">
-                        "Como las pirámides eternas,<br>
-                        nuestro amor desafía el tiempo."
-                    </div>
-                </div>
-                <div class="floating-hearts" style="bottom: 20%; left: 10%;">🏺</div>
-            </div>
-
-            <div class="photo-card">
-                <img src="amanecer_juntos.jpg" alt="Amanecer juntos">
-                <div class="photo-title">
-                    <div class="photo-poem">
-                        "Dormimos bajo las estrellas,<br>
-                        despertamos siendo uno solo."
-                    </div>
-                </div>
-                <div class="floating-hearts" style="top: 40%; left: 30%;">🌅</div>
             </div>
         </div>
 
@@ -251,6 +695,140 @@
         </footer>
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <script>
+        // Configuración optimizada para móviles
+        document.addEventListener('DOMContentLoaded', function() {
+            const startDate = new Date('2025-03-14T15:00:00');
+            
+            // Detectar si es móvil
+            const isMobile = window.innerWidth <= 768;
+            const isLowPower = navigator.hardwareConcurrency <= 4;
+            
+            // Crear menos efectos en móviles
+            if (isMobile || isLowPower) {
+                createOptimizedStars();
+                // No crear partículas en móviles para mejor rendimiento
+            } else {
+                createStars();
+                createParticles();
+            }
+            
+            startLoveCounter(startDate);
+            initializeAnimatedPoems();
+            initializeTimeline();
+            addPhotoInteractions();
+        });
+
+        // Crear estrellas optimizadas para móviles
+        function createOptimizedStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = window.innerWidth <= 768 ? 50 : 100; // Menos estrellas en móviles
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Crear estrellas normales para desktop
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Partículas solo para desktop
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particles = ['💕', '🌟', '✨', '💖', '🦋'];
+            
+            setInterval(() => {
+                if (Math.random() < 0.3) { // Reducir frecuencia
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+                    particle.style.left = `${Math.random() * 100}vw`;
+                    particle.style.animationDuration = `${Math.random() * 3 + 8}s`;
+                    
+                    particlesContainer.appendChild(particle);
+                    
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 12000);
+                }
+            }, 5000); // Menos frecuente
+        }
+
+        // Contador optimizado
+        function startLoveCounter(startDate) {
+            function updateCounter() {
+                const now = new Date();
+                const diff = now - startDate;
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                // Actualizar directamente sin animación pesada en móviles
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+            
+            updateCounter();
+            setInterval(updateCounter, 1000);
+        }
+
+        // Poemas rotativos optimizados
+        function initializeAnimatedPoems() {
+            const poemElement = document.getElementById('animated-poem');
+            const poems = [
+                "Como el reloj que me regalaste,<br>cada segundo contigo es un tesoro.<br>Como las flores que te entregué,<br>mi amor por ti florece cada día más fuerte.",
+                
+                "En Chapultepec bajo la lluvia,<br>nuestros corazones danzaron juntos.<br>Cada gota que caía del cielo<br>era un verso de nuestro poema eterno.",
+                
+                "Con La Sombra del Viento entre mis manos,<br>te pedí ser la luz de mi vida.<br>Como las páginas de ese libro querido,<br>nuestro amor se escribe día a día."
+            ];
+            
+            let currentPoemIndex = 0;
+            
+            function changePoem() {
+                poemElement.style.opacity = '0';
+                
+                setTimeout(() => {
+                    currentPoemIndex = (currentPoemIndex + 1) % poems.length;
+                    poemElement.innerHTML = poems[currentPoemIndex];
+                    poemElement.style.opacity = '1';
+                }, 500);
+            }
+            
+            setInterval(changePoem, 10000); // Menos frecuente
+        }
+
+        // Timeline optimizada
+        function initializeTimeline() {
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            timelineItems.forEach((item, index) => {
+                item.addEventListener('click', () => {
