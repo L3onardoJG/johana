@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carta de Amor Para Ti</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;500;700&family=Sacramento&family=Great+Vibes&family=Kaushan+Script&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Fondo de estrellas suave */
+        #stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: gentleTwinkle 6s infinite ease-in-out;
+        }
+
+        @keyframes gentleTwinkle {
+            0%, 100% { 
+                opacity: 0.2; 
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.6; 
+                transform: scale(1.1);
+            }
+        }
+
+        /* Navegación */
+        .nav-back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(255, 107, 107, 0.8);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-back:hover {
+            background: rgba(255, 107, 107, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Sobre de carta */
+        .envelope {
+            position: relative;
+            background: linear-gradient(145deg, #f4e4c1, #e8d5b7);
+            border-radius: 10px;
+            margin: 3rem auto;
+            padding: 2rem;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            max-width: 800px;
+            transform: perspective(1000px) rotateX(5deg);
+            transition: all 0.4s ease;
+        }
+
+        .envelope:hover {
+            transform: perspective(1000px) rotateX(0deg);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 80px solid #d4af37;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+        }
+
+        /* Carta principal */
+        .letter {
+            background: linear-gradient(145deg, #fefefe, #f8f8f8);
+            color: #2c3e50;
+            padding: 3rem;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+        }
+
+        .letter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 3rem;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff6b6b, transparent);
+            opacity: 0.3;
+        }
+
+        /* Encabezado de la carta */
+        .letter-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid rgba(255, 107, 107, 0.2);
+            position: relative;
+        }
+
+        .letter-title {
+            font-family: 'Sacramento', cursive;
+            font-size: 3.5rem;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .letter-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: #8e44ad;
+            font-style: italic;
+        }
+
+        .letter-date {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-family: 'Kaushan Script', cursive;
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        /* Contenido de la carta */
+        .letter-content {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 2;
+            color: #2c3e50;
+        }
+
+        .letter-content p {
+            margin-bottom: 2rem;
+            text-indent: 2rem;
+            text-align: justify;
+        }
+
+        .letter-content .greeting {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            color: #e74c3c;
+            text-indent: 0;
+            margin-bottom: 2rem;
+        }
+
+        .letter-content .highlight {
+            color: #e74c3c;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .letter-content .quote {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.3rem;
+            color: #8e44ad;
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255, 107, 107, 0.05);
+            border-left: 4px solid #ff6b6b;
+            border-radius: 5px;
+            text-indent: 0;
+            font-style: italic;
+        }
+
+        /* Firma */
+        .letter-signature {
+            margin-top: 3rem;
+            text-align: right;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        .signature-text {
+            font-family: 'Kaushan Script', cursive;
+            font-size: 1.8rem;
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .signature-note {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        /* Efectos especiales */
+        .heart-decoration {
+            display: inline-block;
+            color: #e74c3c;
+            animation: heartPulse 2s infinite;
+            margin: 0 0.5rem;
+        }
+
+        @keyframes heartPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .love-border {
+            position: relative;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            background: rgba(255, 107, 107, 0.03);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 107, 107, 0.2);
+        }
+
+        .love-border::before,
+        .love-border::after {
+            content: '💕';
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.6;
+        }
+
+        .love-border::before {
+            top: -10px;
+            left: -10px;
+        }
+
+        .love-border::after {
+            bottom: -10px;
+            right: -10px;
+        }
+
+        /* Efectos de lluvia de pétalos */
+        .petal {
+            position: fixed;
+            font-size: 20px;
+            animation: fall 8s linear infinite;
+            opacity: 0.7;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .envelope {
+                margin: 2rem auto;
+                padding: 1rem;
+            }
+
+            .letter {
+                padding: 2rem 1.5rem;
+            }
+
+            .letter-title {
+                font-size: 2.5rem;
+            }
+
+            .letter-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .letter-content {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .letter-content p {
+                text-indent: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .nav-back {
+                top: 10px;
+                left: 10px;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .envelope::before {
+                border-left-width: 60px;
+                border-right-width: 60px;
+                border-bottom-width: 50px;
+            }
+        }
+
+        /* Animación de entrada */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Efecto de escritura a máquina */
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.1em;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ff6b6b; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fondo de estrellas -->
+    <div id="stars"></div>
+
+    <!-- Navegación de regreso -->
+    <a href="index.html" class="nav-back">⬅️ Volver a nuestra historia</a>
+
+    <div class="container">
+        <!-- Sobre de la carta -->
+        <div class="envelope fade-in">
+            <div class="letter">
+                <div class="letter-header">
+                    <div class="letter-date">Agosto 14, 2025</div>
+                    <h1 class="letter-title">Para Mi Amor Eterno</h1>
+                    <p class="letter-subtitle">Una carta desde el corazón</p>
+                </div>
+
+                <div class="letter-content">
+                    <p class="greeting">Mi querida Johana,</p>
+
+                    <p>
+                        Mientras escribo estas líneas, siento que las palabras se quedan pequeñas para expresar todo lo que llevo en el corazón. <span class="highlight">Cinco meses</span> pueden parecer poco tiempo en el calendario, pero contigo cada día se ha sentido como una pequeña eternidad llena de magia.
+                    </p>
+
+                    <p>
+                        ¿Recuerdas ese momento cuando me  regalaste el reloj? No era solo un objeto, yo sentí que era tu manera de decime que <span class="highlight">"eres importante para mí y quiero que lo sepas"</span>. Cada segundo, cada minuto, cada hora que compartimos se convierte en un tesoro que guardo muy especialmente en mi memoria.
+                    </p>
+
+                    <div class="love-border">
+                        <p>
+                            Las flores que te entregué llevaban un mensaje secreto: como ellas florecen con el sol, <span class="highlight">mi amor florece cada día más fuerte gracias a tu luz</span>. Tu sonrisa es mi amanecer, tu risa es la melodía que acompaña mis días.
+                        </p>
+                    </div>
+
+                    <p>
+                        Cuando caminamos por Chapultepec bajo la lluvia, y cuando estabamos en el lago, pensé que no había lugar más perfecto en el mundo. No era el lugar, eras tú. <span class="highlight">Contigo, cualquier momento se vuelve extraordinario</span>, cualquier lugar se convierte en nuestro paraíso personal.
+                    </p>
+
+                    <div class="quote">
+                        "En el jardín de mi vida, tú eres la flor más hermosa que jamás pensé que podría brotar."
+                    </div>
+
+                    <p>
+                        Tus dibujos no son solo arte, son <span class="highlight">mapas de tu alma que me permiten conocerte más profundamente</span>. Cada trazo me cuenta una historia, cada línea me susurra tus sueños. Cuando los miro, veo el mundo a través de tus ojos y me enamoro aún más de tu manera tan única de ver la belleza.
+                    </p>
+
+                    <p>
+                        El día que te pedí oficialmente ser mi novia, con "La Sombra del Viento" en mis manos, sabía que estaba escribiendo el primer capítulo de nuestra propia novela de amor. <span class="highlight">Como ese libro que tanto amas, nuestra historia tiene alma propia</span>, vive y respira en cada momento compartido.
+                    </p>
+
+                    <div class="love-border">
+                        <p>
+                            Hemos "visto" las pirámides de Egipto juntos jajaja, pero la maravilla más grande que he conocido eres tú. <span class="highlight">Eres mi séptima maravilla del mundo</span>, la que ningún arqueólogo podrá descubrir porque solo existe en mi corazón.
+                        </p>
+                    </div>
+
+                    <p>
+                        Esa noche que estuvimos juntos, acostados y disfrutando toda la noche juntos, sintiendo como si el tiempo se detuviera... <span class="highlight">Me has enseñado que el amor verdadero no es solo una emoción, es un estado del alma</span>. Contigo he descubierto que existe un lugar donde dos corazones pueden latir como uno solo.
+                    </p>
+
+                    <p>
+                        El paisaje que me recuerda a ti no es casualidad. <span class="highlight">Desde que llegaste a mi vida, todo a mi alrededor ha tomado tu esencia</span>. Los atardeceres susurran tu nombre, las flores huelen a tus sueños, el viento lleva ecos de tu risa.
+                    </p>
+
+                    <div class="quote">
+                        "Cinco meses de amor no son solo tiempo transcurrido, son cinco meses de haber descubierto el significado verdadero de la palabra hogar: donde estás tú."
+                    </div>
+
+                    <p>
+                        No sé qué nos depare el futuro, pero sí sé que <span class="highlight">quiero escribir cada página de mi historia contigo</span>. Quiero que estos cinco meses sean solo el prólogo de los muchos años que vendrán. Quiero seguir regalándote flores, seguir viendo como tus ojos brillan cuando recibes mis cartas, seguir descubriendo el mundo a tu lado.
+                    </p>
+
+                    <p>
+                        Porque al final del día, cuando miro hacia atrás, me doy cuenta de que <span class="highlight">todo lo que he sido hasta ahora ha valido la pena solo por el privilegio de amarte</span>.
+                    </p>
+                </div>
+
+                <div class="letter-signature">
+                    <div class="signature-text">
+                        Con todo mi amor, para toda la vida
+                        <span class="heart-decoration">❤️</span>
+                    </div>
+                    <div class="signature-note">
+                        Tu enamorado eterno, Leo
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear estrellas de fondo
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = window.innerWidth <= 768 ? 30 : 60;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.animationDelay = `${Math.random() * 6}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Crear lluvia de pétalos ocasional
+        function createPetalRain() {
+            const petals = ['🌸', '🌺', '🌹', '💐', '🌷'];
+            
+            setInterval(() => {
+                if (Math.random() < 0.3) {
+                    const petal = document.createElement('div');
+                    petal.classList.add('petal');
+                    petal.textContent = petals[Math.floor(Math.random() * petals.length)];
+                    petal.style.left = `${Math.random() * 100}vw`;
+                    petal.style.animationDuration = `${Math.random() * 3 + 6}s`;
+                    petal.style.animationDelay = `${Math.random() * 2}s`;
+                    
+                    document.body.appendChild(petal);
+                    
+                    setTimeout(() => {
+                        petal.remove();
+                    }, 10000);
+                }
+            }, 8000);
+        }
+
+        // Animación de entrada suave
+        function initializeAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.3}s`;
+            });
+        }
+
+        // Efecto de aparición al hacer scroll
+        function initializeScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            const paragraphs = document.querySelectorAll('.letter-content p');
+            paragraphs.forEach((p, index) => {
+                p.style.opacity = '0';
+                p.style.transform = 'translateY(20px)';
+                p.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(p);
+            });
+        }
+
+        // Destacar frases al pasar el mouse
+        function initializeHighlights() {
+            const highlights = document.querySelectorAll('.highlight');
+            
+            highlights.forEach(highlight => {
+                highlight.addEventListener('mouseenter', () => {
+                    highlight.style.background = 'linear-gradient(45deg, rgba(255, 107, 107, 0.2), rgba(248, 165, 194, 0.2))';
+                    highlight.style.padding = '0.2rem 0.4rem';
+                    highlight.style.borderRadius = '5px';
+                    highlight.style.transition = 'all 0.3s ease';
+                });
+                
+                highlight.addEventListener('mouseleave', () => {
+                    highlight.style.background = 'transparent';
+                    highlight.style.padding = '0';
+                });
+            });
+        }
+
+        // Inicializar todo cuando la página cargue
+        document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            initializeAnimations();
+            initializeScrollAnimations();
+            initializeHighlights();
+            
+            // Solo crear pétalos en desktop para mejor rendimiento
+            if (window.innerWidth > 768) {
+                createPetalRain();
+            }
+        });
+
+        // Efecto especial para el día 12 de cada mes
+        function checkSpecialDate() {
+            const today = new Date();
+            if (today.getDate() === 12) {
+                // Crear más pétalos en el aniversario mensual
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const petal = document.createElement('div');
+                        petal.innerHTML = '💕';
+                        petal.style.position = 'fixed';
+                        petal.style.left = Math.random() * 100 + 'vw';
+                        petal.style.top = '-50px';
+                        petal.style.fontSize = '25px';
+                        petal.style.zIndex = '1000';
+                        petal.style.pointerEvents = 'none';
+                        petal.style.animation = 'fall 5s linear';
+                        
+                        document.body.appendChild(petal);
+                        
+                        setTimeout(() => {
+                            petal.remove();
+                        }, 5000);
+                    }, i * 300);
+                }
+            }
+        }
+
+        checkSpecialDate();
+    </script>
+</body>
+</html>
