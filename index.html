@@ -3,507 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leo & Johana - 2 Meses</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Quicksand:wght@300;500&family=Parisienne&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background: #0f0c29;
-            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Ajustes para móvil */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-
-            h1 {
-                font-size: 3.5rem !important;
-                margin: 0.5rem 0 !important;
-            }
-
-            .subtitle {
-                font-size: 1.3rem !important;
-                margin-bottom: 1.5rem !important;
-            }
-
-            .poema {
-                font-size: 1.1rem !important;
-                padding: 1rem !important;
-                margin: 1.5rem auto !important;
-            }
-
-            .gallery {
-                gap: 1.5rem !important;
-                margin: 2rem 0 !important;
-            }
-
-            .photo-card {
-                width: 100% !important;
-                height: 300px !important;
-                max-width: 300px !important;
-            }
-
-            .photo-title {
-                padding: 1rem !important;
-                font-size: 1rem !important;
-            }
-        }
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background: #0f0c29;
-            color: #fff;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Capa 1: Estrellas estáticas de fondo */
-        #static-stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .static-star {
-            position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            opacity: 0.3;
-        }
-
-        /* Capa 2: Estrellas fugaces (encima del fondo, detrás del contenido) */
-        #shooting-stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .shooting-star {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
-            animation: shoot linear;
-            z-index: 1;
-        }
-
-        @keyframes shoot {
-            0% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
-            70% { opacity: 0.8; }
-            100% { transform: translateX(100vw) translateY(100vh) scale(0); opacity: 0; }
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        h1 {
-            font-family: 'Parisienne', cursive;
-            font-size: 5.5rem;
-            margin: 1rem 0;
-            color: #ff9e9e;
-            text-shadow: 0 0 15px rgba(255, 158, 158, 0.7);
-            animation: glow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px rgba(255, 158, 158, 0.7); }
-            to { text-shadow: 0 0 20px rgba(255, 158, 158, 1), 0 0 30px rgba(255, 107, 107, 0.6); }
-        }
-
-        .subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: #d1b3ff;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-        
-        /* Nuevo estilo para el subtítulo con cursor */
-        .subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            color: #d1b3ff;
-            font-weight: 300;
-            letter-spacing: 1px;
-            min-height: 2.5rem; /* Para evitar saltos de línea */
-        }
-
-        .subtitle::after {
-            content: '|';
-            animation: blink 0.7s infinite;
-            margin-left: 5px;
-            color: #ff9e9e;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .poema {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            line-height: 1.9;
-            margin: 3rem auto;
-            max-width: 700px;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            animation: fadeIn 3s;
-            position: relative;
-        }
-
-        .poema::before {
-            content: '"';
-            font-size: 5rem;
-            position: absolute;
-            top: -1rem;
-            left: 1rem;
-            color: rgba(255, 158, 158, 0.2);
-            font-family: serif;
-        }
-
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2.5rem;
-            margin: 4rem 0;
-        }
-
-        .photo-card {
-            position: relative;
-            width: 280px;
-            height: 280px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .photo-card:hover {
-            transform: translateY(-15px) rotate(1deg);
-            box-shadow: 0 25px 50px rgba(209, 179, 255, 0.3);
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s;
-        }
-
-        .photo-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .photo-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            padding: 1.5rem;
-            font-size: 1.1rem;
-            font-family: 'Playfair Display', serif;
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .photo-card:hover .photo-title {
-            opacity: 1;
-        }
-
-        .memory-date {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 0.3rem 0.6rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .photo-card:hover .memory-date {
-            opacity: 1;
-        }
-
-        footer {
-            margin-top: 4rem;
-            font-size: 1rem;
-            color: #a5b1c2;
-            font-family: 'Quicksand', sans-serif;
-        }
-
-        /* Efecto de letras flotantes */
-        .floating-letter {
-            position: absolute;
-            font-family: 'Parisienne', cursive;
-            color: #ff9e9e;
-            font-size: 1.2rem;
-            animation: float 5s infinite ease-in-out;
-            opacity: 0;
-            z-index: 1;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            50% { transform: translateY(-20px) rotate(5deg); opacity: 0.7; }
-        }
-    </style>
+    <title>Nuestros 5 Meses de Amor Eterno</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;500;700&family=Sacramento&family=Great+Vibes&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Capa 1: Estrellas estáticas -->
-    <div id="static-stars"></div>
-
-    <!-- Capa 2: Estrellas fugaces -->
-    <div id="shooting-stars"></div>
+    <!-- Estrellas de fondo -->
+    <div id="stars"></div>
+    
+    <!-- Partículas flotantes -->
+    <div id="particles"></div>
 
     <div class="container">
-        <h1>Leo & Johana</h1>
-        <p class="subtitle">2 meses escribiendo nuestra historia</p>
-
-        <div class="poema" id="dynamic-poem">
-            "Johana, cada día a tu lado es un verso nuevo<br>
-            en el poema infinito que quiero escribir contigo."
+        <!-- Contador especial -->
+        <div class="love-counter">
+            <div class="counter-item">
+                <span class="counter-number" id="days">0</span>
+                <span class="counter-label">Días</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-number" id="hours">0</span>
+                <span class="counter-label">Horas</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-number" id="minutes">0</span>
+                <span class="counter-label">Minutos</span>
+            </div>
+            <div class="counter-item">
+                <span class="counter-number" id="seconds">0</span>
+                <span class="counter-label">Segundos</span>
+            </div>
         </div>
 
-        <div class="gallery">
-            <!-- Foto 1 -->
-            <div class="photo-card">
-                <img src="Un reloj que me regaló.jpg" alt="Reloj especial">
-                <div class="photo-title">"Este reloj no marca las horas, marca los momentos en que me das razones para sonreír."</div>
-                <div class="memory-date">21/02/2025</div>
-                <div class="floating-letter" style="top: 10%; left: 15%;">J</div>
-                <div class="floating-letter" style="top: 80%; right: 10%;">O</div>
-            </div>
+        <h1>5 Meses de Amor Infinito</h1>
+        <p class="subtitle">Como las páginas de un libro eterno, cada día contigo es una nueva historia de amor</p>
 
-            <!-- Foto 2 -->
-            <div class="photo-card">
-                <img src="Un ramo de flores que le regalé.jpg" alt="Ramo de flores">
-                <div class="photo-title">"Las flores se marchitaron, pero la luz que me das con tu amor sigue brillando igual."</div>
-                <div class="memory-date">17/04/2025</div>
-                <div class="floating-letter" style="top: 30%; right: 20%;">H</div>
-                <div class="floating-letter" style="bottom: 15%; left: 20%;">A</div>
+        <!-- Frase de La Sombra del Viento -->
+        <div class="book-quote">
+            <div class="quote-content">
+                "Cada libro, cada volumen que ves aquí, tiene alma. El alma de quien lo escribió y de quienes lo leyeron y vivieron y soñaron con él."
             </div>
-
-            <!-- Foto 3 -->
-            <div class="photo-card">
-                <img src="Un ramo de flores que le hice.jpg" alt="Ramo hecho a mano">
-                <div class="photo-title">"Cada pétalo que pegué llevaba un mensaje invisible: 'Eres mi sueño hecho realidad'."</div>
-                <div class="memory-date">5/04/2025</div>
-                <div class="floating-letter" style="top: 50%; left: 10%;">N</div>
-                <div class="floating-letter" style="bottom: 25%; right: 15%;">A</div>
-            </div>
-
-            <!-- Foto 4 -->
-            <div class="photo-card">
-                <img src="dibujo que me dió.jpg" alt="Dibujo especial">
-                <div class="photo-title">"Este dibujo es mi tesoro más valioso, con tu alma creativa capturaste nuestro amor."</div>
-                <div class="memory-date">22/04/2023</div>
-                <div class="floating-letter" style="top: 20%; right: 25%;">T</div>
-                <div class="floating-letter" style="bottom: 30%; left: 15%;">E</div>
-            </div>
-
-            <!-- Foto 5 -->
-            <div class="photo-card">
-                <img src="dibujo 2 que me dió.jpg" alt="Segundo dibujo">
-                <div class="photo-title">"Cuando miro tus dibujos, veo el mundo a través de ellos... y es perfecto."</div>
-                <div class="memory-date">22/04/2023</div>
-                <div class="floating-letter" style="top: 70%; left: 20%;">A</div>
-                <div class="floating-letter" style="bottom: 10%; right: 20%;">M</div>
-            </div>
-
-            <!-- Foto 6 -->
-            <div class="photo-card">
-                <img src="foto de paisaje de mi casa que me recuerda a ella.jpg" alt="Paisaje especial">
-                <div class="photo-title">"Este lugar era solo un paisaje hasta que en el atardecer veo tu escencia"</div>
-                <div class="memory-date"></div>
-                <div class="floating-letter" style="top: 40%; right: 10%;">O</div>
-                <div class="floating-letter" style="bottom: 20%; left: 25%;">💖</div>
-            </div>
-
-            <!-- Foto 7 -->
-            <div class="photo-card">
-                <img src="foto enmedio.jpg" alt="Foto juntos">
-                <div class="photo-title">"Estoy seguro que esta es la forma de mi corazón"</div>
-                <div class="memory-date">09/05/2025</div>
-                <div class="floating-letter" style="top: 15%; left: 20%;">L</div>
-                <div class="floating-letter" style="bottom: 15%; right: 25%;">J</div>
-            </div>
+            <div class="quote-author">- Carlos Ruiz Zafón, La Sombra del Viento</div>
+            <p class="quote-meaning">Como este libro que leíste, nuestro amor tiene alma propia, vive y respira en cada momento compartido.</p>
         </div>
 
         <div class="poema">
-            "Johana mi amor, en solo 6 meses de conocerte<br>
-            has convertido mi vida en algo extraordinario.<br>
-            Como las estrellas que nos miran,<br>
-            mi amor por ti brilla con tanta intensidad."
+            <span id="animated-poem">"Como el reloj que me regalaste,<br>
+            cada segundo contigo es un tesoro.<br>
+            Como las flores que te entregué,<br>
+            mi amor por ti florece cada día más fuerte."</span>
+        </div>
+
+        <!-- Línea de tiempo interactiva -->
+        <div class="timeline-container">
+            <h2 class="timeline-title">Nuestra Historia de Amor</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-month="1">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Mes 1: El Comienzo</h3>
+                        <p>Donde todo empezó, los primeros latidos acelerados</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-month="2">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Mes 2: Primeros Regalos</h3>
+                        <p>El reloj que detuvo el tiempo, las flores que hablaron por mi corazón</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-month="3">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Mes 3: Oficialmente Nuestro</h3>
+                        <p>El día que te pedí ser mi novia y te regalé tu libro favorito</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-month="4">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Mes 4: Aventuras Juntos</h3>
+                        <p>Chapultepec bajo la lluvia, las pirámides de nuestros sueños</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-month="5">
+                    <div class="timeline-marker active"></div>
+                    <div class="timeline-content">
+                        <h3>Mes 5: Amaneceres Contigo</h3>
+                        <p>Noches que se vuelven eternidad, amaneceres que prometen más amor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galería expandida -->
+        <div class="gallery">
+            <!-- Fotos originales -->
+            <div class="photo-card">
+                <img src="Un reloj que me regaló.jpg" alt="Reloj especial">
+                <div class="photo-title">El reloj que detuvo el tiempo cuando te conocí</div>
+                <div class="floating-hearts" style="top: 20%; left: 10%;">❤️</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Un ramo de flores que le regalé.jpg" alt="Ramo de flores">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "Flores para quien florece en mi alma,<br>
+                        pétalos que susurran tu nombre."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="top: 70%; right: 10%;">🌸</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Un ramo de flores que le hice.jpg" alt="Ramo hecho a mano">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "Cada pétalo llevaba un 'te amo',<br>
+                        cada hoja una promesa eterna."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="bottom: 20%; left: 15%;">💐</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="dibujo que me dió.jpg" alt="Dibujo especial">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "Tu arte vive en mi corazón,<br>
+                        cada trazo una caricia al alma."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="top: 30%; right: 20%;">🎨</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="dibujo 2 que me dió.jpg" alt="Segundo dibujo">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "Tus manos crean magia,<br>
+                        tus dibujos dibujan mi felicidad."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="bottom: 40%; right: 25%;">✏️</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="foto de paisaje de mi casa que me recuerda a ella.jpg" alt="Paisaje especial">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "Este lugar grita tu nombre,<br>
+                        cada atardecer susurra 'te amo'."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="top: 50%; left: 20%;">🌄</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="foto enmedio.jpg" alt="Foto juntos">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "El centro de mi universo,<br>
+                        donde orbitan todos mis sueños."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="bottom: 10%; right: 10%;">👑</div>
+            </div>
+
+            <!-- Nuevas fotos -->
+            <div class="photo-card">
+                <img src="chapultepec_lluvia.jpg" alt="Chapultepec bajo la lluvia">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "Bajo la lluvia de Chapultepec,<br>
+                        nuestro amor creció como las flores del lago."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="top: 25%; left: 20%;">🌧️</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="dia_flores.jpg" alt="El día de las flores">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "Ese día te entregué flores,<br>
+                        tú me entregaste tu sonrisa eterna."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="bottom: 30%; right: 15%;">💝</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="oficial_novia.jpg" alt="El día oficial">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "Con La Sombra del Viento en mis manos,<br>
+                        te pedí ser la luz de mi vida."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="top: 15%; right: 25%;">📖</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="piramides_egipto.jpg" alt="Pirámides de Egipto">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "Como las pirámides eternas,<br>
+                        nuestro amor desafía el tiempo."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="bottom: 20%; left: 10%;">🏺</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="amanecer_juntos.jpg" alt="Amanecer juntos">
+                <div class="photo-title">
+                    <div class="photo-poem">
+                        "Dormimos bajo las estrellas,<br>
+                        despertamos siendo uno solo."
+                    </div>
+                </div>
+                <div class="floating-hearts" style="top: 40%; left: 30%;">🌅</div>
+            </div>
+        </div>
+
+        <div class="final-poem">
+            <div class="poem-content">
+                "En cinco meses de amor infinito,<br>
+                has llenado mis días de colores imposibles,<br>
+                como los dibujos que me regalaste,<br>
+                como el paisaje que ahora lleva tu nombre,<br>
+                como el libro que une nuestras almas,<br>
+                como cada amanecer a tu lado.<br><br>
+                
+                Que sean cinco meses de muchos años,<br>
+                que sean el prólogo de nuestra eternidad."
+            </div>
         </div>
 
         <footer>
-            Leo & Johana - Un viaje que apenas comienza • Miércoles 14 de mayo 2025
+            <div class="footer-content">
+                <p>Cada imagen guarda un latido de nuestro amor</p>
+                <p class="love-signature">Con todo mi amor, para toda la vida ❤️</p>
+                <div class="footer-hearts">💕 🌟 💕</div>
+            </div>
         </footer>
     </div>
 
-    <script>
-        // Estrellas estáticas de fondo
-        const staticStarsContainer = document.getElementById('static-stars');
-        for (let i = 0; i < 200; i++) {
-            const star = document.createElement('div');
-            star.className = 'static-star';
-            star.style.width = `${Math.random() * 2 + 1}px`;
-            star.style.height = star.style.width;
-            star.style.left = `${Math.random() * 100}vw`;
-            star.style.top = `${Math.random() * 100}vh`;
-            staticStarsContainer.appendChild(star);
-        }
-
-        // Reemplaza el script anterior con este:
-        const subtitle = document.querySelector('.subtitle');
-        const phrases = [
-            "2 meses escribiendo nuestra historia",
-            "60 días de felicidad compartida",
-            "Un capítulo inolvidable juntos"
-        ];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 100;
-
-        function typeWriter() {
-            const currentPhrase = phrases[phraseIndex];
-            
-            if (isDeleting) {
-                subtitle.textContent = currentPhrase.substring(0, charIndex--);
-                typingSpeed = 50;
-                
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                }
-            } else {
-                subtitle.textContent = currentPhrase.substring(0, charIndex++);
-                typingSpeed = 100;
-                
-                if (charIndex === currentPhrase.length) {
-                    isDeleting = true;
-                    typingSpeed = 1500; // Pausa antes de borrar
-                }
-            }
-            
-            setTimeout(typeWriter, typingSpeed);
-        }
-
-        // Iniciar después de 2 segundos
-        setTimeout(typeWriter, 2000);
-
-
-
-        // Estrellas fugaces
-        function createShootingStar() {
-            const star = document.createElement('div');
-            star.className = 'shooting-star';
-            star.style.left = `${Math.random() * 20}vw`;
-            star.style.top = `${Math.random() * 20}vh`;
-            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
-            document.getElementById('shooting-stars').appendChild(star);
-            setTimeout(() => star.remove(), 5000);
-        }
-
-        setInterval(createShootingStar, 800);
-
-        // Poemas dinámicos
-        const poems = [
-            "Cariño mío, tu risa es la melodía que pone color a mis días grises.",
-            "Princesa, contigo aprendí que el amor no se mide en tiempo, sino en momentos que se quedan en el corazón",
-            "En tus ojos encontré el mapa para perderme... y no quiero ser encontrado nunca.",
-            "Somos como esas estrellas del fondo: aunque a veces parezcamos lejanas, siempre brillamos juntas.",
-            "Mi vida empezó el día que te conocí"
-        ];
-
-        let currentPoem = 0;
-        setInterval(() => {
-            currentPoem = (currentPoem + 1) % poems.length;
-            document.getElementById('dynamic-poem').innerHTML = poems[currentPoem];
-            document.getElementById('dynamic-poem').style.animation = 'none';
-            setTimeout(() => {
-                document.getElementById('dynamic-poem').style.animation = 'fadeIn 3s';
-            }, 10);
-        }, 10000);
-
-        // Letras flotantes (forman "JOHANA TE AMO" al pasar el mouse)
-        const letters = document.querySelectorAll('.floating-letter');
-        letters.forEach((letter, index) => {
-            letter.style.animationDelay = `${index * 0.5}s`;
-            setTimeout(() => {
-                letter.style.opacity = '0.7';
-            }, index * 300);
-        });
-
-        // Fecha actual
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('today-date').textContent = new Date().toLocaleDateString('es-ES', options);
-        // Ajuste adicional para móviles: reducir cantidad de estrellas
-        function createStars() {
-            const isMobile = window.innerWidth <= 768;
-            const starCount = isMobile ? 100 : 200;
-            
-            const staticStarsContainer = document.getElementById('static-stars');
-            staticStarsContainer.innerHTML = '';
-            
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'static-star';
-                star.style.width = `${Math.random() * 2 + 1}px`;
-                star.style.height = star.style.width;
-                star.style.left = `${Math.random() * 100}vw`;
-                star.style.top = `${Math.random() * 100}vh`;
-                staticStarsContainer.appendChild(star);
-            }
-        }
-
-        // Ejecutar al cargar y al redimensionar
-        window.addEventListener('load', createStars);
-        window.addEventListener('resize', createStars);
-
-
-        
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
