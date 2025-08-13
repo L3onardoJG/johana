@@ -1,0 +1,568 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #16213e 100%);
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Estrellas de fondo mejoradas */
+#stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    animation: twinkle var(--duration) infinite ease-in-out;
+}
+
+.star.shooting {
+    width: 2px !important;
+    height: 2px !important;
+    background: linear-gradient(45deg, #fff, #ff6b6b);
+    animation: shooting 3s linear infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.3; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.2);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+}
+
+@keyframes shooting {
+    0% {
+        transform: translateX(-100px) translateY(100px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100vw) translateY(-100px);
+        opacity: 0;
+    }
+}
+
+/* Partículas flotantes */
+#particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    font-size: 20px;
+    animation: floatParticle 8s infinite linear;
+    opacity: 0.6;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Contador de amor */
+.love-counter {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+    }
+    to {
+        box-shadow: 0 0 30px rgba(255, 107, 107, 0.6);
+    }
+}
+
+.counter-item {
+    text-align: center;
+    padding: 1rem;
+}
+
+.counter-number {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #ff6b6b;
+    display: block;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+.counter-label {
+    font-size: 0.9rem;
+    color: #f8a5c2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Sacramento', cursive;
+    font-size: 5rem;
+    margin: 1rem 0;
+    color: #ff6b6b;
+    text-shadow: 0 0 15px rgba(255, 107, 107, 0.7);
+    animation: heartBeat 3s infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { 
+        transform: scale(1); 
+    }
+    50% { 
+        transform: scale(1.03);
+        text-shadow: 0 0 25px rgba(255, 107, 107, 1);
+    }
+}
+
+.subtitle {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: #f8a5c2;
+    line-height: 1.4;
+}
+
+/* Cita del libro */
+.book-quote {
+    margin: 3rem auto;
+    max-width: 800px;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 107, 107, 0.1));
+    border-radius: 20px;
+    border-left: 5px solid #ff6b6b;
+    position: relative;
+    backdrop-filter: blur(15px);
+}
+
+.book-quote::before {
+    content: '"';
+    font-size: 8rem;
+    color: rgba(255, 107, 107, 0.3);
+    position: absolute;
+    top: -2rem;
+    left: 1rem;
+    font-family: 'Great Vibes', cursive;
+}
+
+.quote-content {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: #fff;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.quote-author {
+    color: #f8a5c2;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-align: right;
+}
+
+.quote-meaning {
+    color: #e8d5d5;
+    font-size: 1rem;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.poema {
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin: 3rem auto;
+    max-width: 700px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    border-left: 3px solid #ff6b6b;
+    animation: fadeInUp 2s;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Línea de tiempo */
+.timeline-container {
+    margin: 5rem 0;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.timeline-title {
+    font-family: 'Sacramento', cursive;
+    font-size: 3rem;
+    color: #ff6b6b;
+    margin-bottom: 3rem;
+    text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: linear-gradient(180deg, #ff6b6b, #f8a5c2);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+}
+
+.timeline-item {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.timeline-item:nth-child(odd) {
+    left: -50%;
+    text-align: right;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+.timeline-marker {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -60px;
+    background: #fff;
+    border: 4px solid #ff6b6b;
+    top: 2rem;
+    border-radius: 50%;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:nth-child(even) .timeline-marker {
+    left: -60px;
+}
+
+.timeline-marker.active {
+    background: #ff6b6b;
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+    animation: pulse 2s infinite;
+}
+
+.timeline-content h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: #ff6b6b;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    color: #e8d5d5;
+    line-height: 1.6;
+}
+
+/* Galería mejorada */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin: 5rem 0;
+    padding: 2rem;
+}
+
+.photo-card {
+    position: relative;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    transition: all 0.6s ease;
+    background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(248, 165, 194, 0.1));
+}
+
+.photo-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 107, 107, 0.1));
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.photo-card:hover {
+    transform: translateY(-15px) rotateY(5deg);
+    box-shadow: 0 25px 50px rgba(255, 107, 107, 0.4);
+}
+
+.photo-card:hover::before {
+    opacity: 0;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.photo-card:hover img {
+    transform: scale(1.1) rotate(1deg);
+}
+
+.photo-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    color: #fff;
+    padding: 2rem;
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+    z-index: 2;
+}
+
+.photo-card:hover .photo-title {
+    transform: translateY(0);
+}
+
+.photo-poem {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: #f8a5c2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.floating-hearts {
+    position: absolute;
+    font-size: 1.8rem;
+    animation: floatHearts 6s infinite ease-in-out;
+    opacity: 0.8;
+    z-index: 3;
+}
+
+@keyframes floatHearts {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg) scale(1); 
+    }
+    50% { 
+        transform: translateY(-25px) rotate(10deg) scale(1.2); 
+        text-shadow: 0 0 15px rgba(255, 107, 107, 0.8);
+    }
+}
+
+/* Poema final */
+.final-poem {
+    margin: 5rem auto;
+    max-width: 800px;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(248, 165, 194, 0.2));
+    border-radius: 25px;
+    position: relative;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 107, 107, 0.3);
+}
+
+.final-poem::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff6b6b, #f8a5c2, #ff6b6b);
+    border-radius: 25px;
+    z-index: -1;
+    animation: borderFlow 3s linear infinite;
+}
+
+@keyframes borderFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.poem-content {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer mejorado */
+footer {
+    margin-top: 5rem;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 25px 25px 0 0;
+    backdrop-filter: blur(10px);
+}
+
+.footer-content p {
+    font-size: 1rem;
+    color: #a5b1c2;
+    margin: 0.5rem 0;
+}
+
+.love-signature {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4rem;
+    color: #ff6b6b !important;
+    margin: 1rem 0 !important;
+}
+
+.footer-hearts {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 1.5rem;
+    }
+    
+    .love-counter {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .counter-number {
+        font-size: 2rem;
+    }
+    
+    .timeline-item {
+        left: 0 !important;
+        text-align: center !important;
+    }
+    
+    .timeline::after {
+        left: 20px;
+    }
+    
+    .timeline-marker {
+        left: 10px !important;
+        right: auto !important;
+    }
+    
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .photo-card {
+        height: 300px;
+    }
+    
+    .quote-content {
+        font-size: 1.4rem;
+    }
+}
